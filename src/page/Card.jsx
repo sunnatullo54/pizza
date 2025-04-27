@@ -34,8 +34,6 @@ const Card = ({ cardItems, increaseCount, decreaseCount, lang }) => {
                 <span className="text-lg font-bold">{item.count}</span>
                 <button onClick={() => increaseCount(item.id)} className="px-2 py-1 bg-gray-300 rounded text-lg">+</button>
               </div>
-              
-
               <span className="text-yellow-500 block font-bold">
                 {item.price * item.count}₽
               </span>
