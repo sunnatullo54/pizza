@@ -127,4 +127,5 @@ const Navbar = ({ cartItems, lang, setLang }) => {
   );
 };
 
+
 export default Navbar;
