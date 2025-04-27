@@ -1,0 +1,79 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Outfit:wght@100..900&display=swap");
+@import "tailwindcss";
+
+@theme {
+  --color-black: #231f20;
+  --color-yellov: #231f20;
+}
+
+.container {
+  max-width: 1250px;
+  margin: auto;
+  padding: 20px 0px;
+}
+
+.button {
+  border-radius: 28px;
+  font-family: Montserrat;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 28px;
+  background-color: #f3f3f7;
+  padding: 7px 28px;
+  color: #696f7a;
+}
+
+.div {
+  display: flex;
+  justify-content: space-between;
+}
+
+.Basket {
+  font-family: Montserrat;
+  font-weight: 700;
+  background-color: #f7d22d;
+  border-radius: 5px;
+  padding: 7px 25px;
+}
+
+.logo {
+  display: flex;
+  justify-content: center;
+  padding: 11px 36px;
+  width: 100px;
+  border-radius: 13px;
+}
+
+.logo-b {
+  display: flex;
+  justify-content: center;
+  padding: 11px 36px;
+  border-radius: 13px;
+  width: 206px;
+  font-family: Montserrat;
+  font-weight: 700;
+  font-size: 13px;
+}
+
+.text-yellov {
+  font-family: Montserrat;
+  font-weight: 700;
+  font-size: 30px;
+  color: #f7d22d;
+}
+
+.text {
+  font-family: Montserrat;
+  font-weight: 800;
+  font-size: 24px;
+  line-height: 28px;
+  color: #797979;
+}
+
+.text-p {
+  font-family: Montserrat;
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 19px;
+  color: #686466;
+}
