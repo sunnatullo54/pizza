@@ -68,6 +68,7 @@ const Navbar = ({ cartItems, lang, setLang }) => {
             className="md:hidden flex items-center px-3 py-2 border rounded text-black border-black"
           >
             ☰
+            <LanguageSelector setLang={setLang} />
           </button>
         </div>
       </div>
