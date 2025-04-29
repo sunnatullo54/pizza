@@ -1,11 +1,35 @@
+import React, { useState } from "react";
+
 const LanguageSelector = ({ setLang }) => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [selectedLang, setSelectedLang] = useState("EN");
+
+  const languages = [
+    { code: "en", label: "EN" },
+    { code: "ru", label: "RU" },
+    { code: "uz", label: "UZ" },
+  ];
+
+  const handleChange = (lang) => {
+    setSelectedLang(lang.label);
+    setLang(lang.code);
+    setIsOpen(false);
+  };
+
   return (
     <div className="relative">
-      <div className="flex bg-white shadow-md">
-        <button onClick={() => setLang("ru")} className="block px-4 py-2 hover:bg-gray-100">Ru</button>
-        <button onClick={() => setLang("en")} className="block px-4 py-2 hover:bg-gray-100">En</button>
-        <button onClick={() => setLang("uz")} className="block px-4 py-2 hover:bg-gray-100">Uz</button>
-      </div>
+      <button onClick={() => setIsOpen(!isOpen)} className="border rounded-[10px] p-[5px] w-[70px]">
+        {selectedLang} ▼
+      </button>
+      {isOpen && (
+        <div className="border rounded-[10px] flex flex-col justify-between items-center absolute z-10 w-[70px]">
+          {languages.map((lang) => (
+            <button key={lang.code} onClick={() => handleChange(lang)} className="dropdown-item flex">
+              {lang.label}
+            </button>
+          ))}
+        </div>
+      )}
     </div>
   );
 };

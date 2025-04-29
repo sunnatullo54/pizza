@@ -7,7 +7,7 @@ const pizza = ({ addToCard, lang }) => {
   return (
     <div className="container">
       <h1 className="text-yellov">{pizza_data[0]?.category?.[lang]}</h1>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 pt-[30px]">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 pt-[30px]">
         {pizza_data.map((pizza, index) => (
           <div
             key={index}

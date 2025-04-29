@@ -12,7 +12,7 @@ const Home = ({ lang }) => {
           {lang === "uz" && "Yangi elementlar"}
           {lang === "en" && "New items"}
         </h2>
-        <div className="flex flex-wrap items-center justify-between">
+        <div className="flex flex-wrap items-center justify-between grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
           <div className="flex items-center gap-4">
             <img src={pizza} alt="" className="w-20 object-cover" />
             <div>

@@ -3,7 +3,10 @@ import empty from "../assets/gif/empty.gif";
 import "../index.css";
 
 const Card = ({ cardItems, increaseCount, decreaseCount, lang }) => {
-  const totalPrice = cardItems.reduce((sum, item) => sum + item.price * item.count, 0);
+  const totalPrice = cardItems.reduce(
+    (sum, item) => sum + item.price * item.count,
+    0
+  );
 
   return (
     <div className="container">
@@ -19,22 +22,58 @@ const Card = ({ cardItems, increaseCount, decreaseCount, lang }) => {
       ) : (
         <div className="grid grid-cols-1 gap-4">
           {cardItems.map((item, index) => (
-            <div key={index} className="p-4 bg-white shadow rounded flex justify-between items-center">
-              <div className="flex gap-[30px] items-center">
-                <img src={item.img} className="w-[100px]" alt={item.title?.ru} />
-                <div>
-                  <h2 className="text text-lg font-bold">{item.title?.[lang]}</h2>
+            <div
+              key={index}
+              className="p-4 bg-white shadow rounded md:flex md:justify-between md:items-center"
+            >
+              <div className="flex flex-col md:flex-row md:items-center md:gap-[30px]">
+                <div className="flex gap-4 items-center">
+                  <img
+                    src={item.img}
+                    className="w-[100px]"
+                    alt={item.title?.ru}
+                  />
+                  <div className="flex items-center gap-3 md:hidden">
+                    <button
+                      onClick={() => decreaseCount(item.id)}
+                      className="px-2 py-1 bg-gray-300 rounded text-lg"
+                    >
+                      -
+                    </button>
+                    <span className="text-lg font-bold">{item.count}</span>
+                    <button
+                      onClick={() => increaseCount(item.id)}
+                      className="px-2 py-1 bg-gray-300 rounded text-lg"
+                    >
+                      +
+                    </button>
+                  </div>
+                </div>
+                <div className="mt-4 md:mt-0">
+                  <h2 className="text text-lg font-bold">
+                    {item.title?.[lang]}
+                  </h2>
                   <p className="text-p text-sm text-gray-600">
                     {item.description?.[lang]}
                   </p>
                 </div>
               </div>
-              <div className="flex items-center gap-3">
-                <button onClick={() => decreaseCount(item.id)} className="px-2 py-1 bg-gray-300 rounded text-lg">-</button>
+              <div className="hidden md:flex items-center gap-3">
+                <button
+                  onClick={() => decreaseCount(item.id)}
+                  className="px-2 py-1 bg-gray-300 rounded text-lg"
+                >
+                  -
+                </button>
                 <span className="text-lg font-bold">{item.count}</span>
-                <button onClick={() => increaseCount(item.id)} className="px-2 py-1 bg-gray-300 rounded text-lg">+</button>
+                <button
+                  onClick={() => increaseCount(item.id)}
+                  className="px-2 py-1 bg-gray-300 rounded text-lg"
+                >
+                  +
+                </button>
               </div>
-              <span className="text-yellow-500 block font-bold">
+              <span className="text-yellow-500 font-bold mt-4 md:mt-0 block text-right md:text-left">
                 {item.price * item.count}₽
               </span>
             </div>

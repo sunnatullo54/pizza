@@ -50,7 +50,7 @@ const Navbar = ({ cartItems, lang, setLang }) => {
                 {lang === "ru" && "Яндекс еда"}{" "}
                 {lang === "uz" && "Yandex taomlari"}{" "}
                 {lang === "en" && "Yandex food"}
-                <img src={point} alt="" className="w-3 h-3" />
+                <img src={point} alt="" className="w-1 h-3" />
                 <span className="flex gap-1 items-center">
                   4.8 <img src={star} alt="" className="w-4 h-4" />
                 </span>
@@ -59,7 +59,7 @@ const Navbar = ({ cartItems, lang, setLang }) => {
                 {lang === "ru" && "Время доставки"}
                 {lang === "uz" && "Yetkazish vaqti"}
                 {lang === "en" && "Delivery time"}
-                <img src={point} alt="" className="w-3 h-3" />
+                <img src={point} alt="" className="w-1 h-3" />
                 {lang === "ru" && "от 31 мин"}
                 {lang === "uz" && "31 daqiqadan boshlab"}
                 {lang === "en" && "from 31 min"}
@@ -76,12 +76,14 @@ const Navbar = ({ cartItems, lang, setLang }) => {
           <div className="text-yellow-500 font-bold text-lg hidden md:block">
             8 499 391-84-49
           </div>
-          <button
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="md:hidden flex items-center px-3 py-2 border rounded text-black border-black"
-          >
-            ☰
-          </button>
+          <div className="md:hidden">
+            <button
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              className="flex items-center px-3 py-2 border rounded text-black border-black"
+            >
+              ☰
+            </button>
+          </div>
         </div>
       </div>
       {isMenuOpen && (
@@ -108,38 +110,43 @@ const Navbar = ({ cartItems, lang, setLang }) => {
             {lang === "uz" && "Savatcha"}
             {lang === "en" && "Cart"} | {cartItems.length}
           </button>
+          <div className="w-full text-center py-2">
+            <LanguageSelector setLang={setLang} />
+          </div>
         </div>
       )}
-      <div className="">
-        <div className="hidden md:flex justify-between items-center pt-4 sticky top-25 z-50">
-          <ul className="flex gap-4 bg-gray-100 p-2 rounded-xl">
-            {menuItems.map((item) => (
-              <li key={item.path}>
-                <NavLink
-                  to={item.path}
-                  className={({ isActive }) =>
-                    isActive
-                      ? "bg-white px-4 py-2 rounded-xl shadow text-black font-semibold"
-                      : "px-4 py-2 text-black hover:bg-gray-200 rounded-xl"
-                  }
-                >
-                  {item.label[lang]}
-                </NavLink>
-              </li>
-            ))}
-          </ul>
+      <div className="hidden md:flex justify-between items-center">
+        <ul className="flex gap-4 bg-gray-100 p-2 rounded-xl">
+          {menuItems.map((item) => (
+            <li key={item.path}>
+              <NavLink
+                to={item.path}
+                className={({ isActive }) =>
+                  isActive
+                    ? "bg-white px-4 py-2 rounded-xl shadow text-black font-semibold"
+                    : "px-4 py-2 text-black hover:bg-gray-200 rounded-xl"
+                }
+              >
+                {item.label[lang]}
+              </NavLink>
+            </li>
+          ))}
+        </ul>
 
+        <div className="flex gap-[15px]">
           <button onClick={toCard} className="Basket">
             {lang === "ru" && "Корзина"}
             {lang === "uz" && "Savatcha"}
             {lang === "en" && "Cart"} | {cartItems.length}
           </button>
-          <LanguageSelector setLang={setLang} />
+
+          <div className="order-1 md:order-2">
+            <LanguageSelector setLang={setLang} />
+          </div>
         </div>
       </div>
     </div>
   );
 };
-
 
 export default Navbar;
