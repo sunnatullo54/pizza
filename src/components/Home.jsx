@@ -14,7 +14,7 @@ const Home = ({ lang }) => {
         </h2>
         <div className="flex flex-wrap items-center justify-between">
           <div className="flex items-center gap-4">
-            <img src={pizza} alt="" className="w-28 h-28 object-cover" />
+            <img src={pizza} alt="" className="w-20 object-cover" />
             <div>
               <p className="font-montserrat font-bold text-lg leading-tight">
                 {lang === "ru" && "Карбонара"}
@@ -29,7 +29,7 @@ const Home = ({ lang }) => {
             </div>
           </div>
           <div className="flex items-center gap-4">
-            <img src={pizza} alt="" className="w-28 h-28 object-cover" />
+            <img src={pizza} alt="" className="w-20 object-cover" />
             <div>
               <p className="font-montserrat font-bold text-lg leading-tight">
                 {lang === "ru" && "Карбонара"}
@@ -44,7 +44,7 @@ const Home = ({ lang }) => {
             </div>
           </div>
           <div className="flex items-center gap-4">
-            <img src={pizza} alt="" className="w-28 h-28 object-cover" />
+            <img src={pizza} alt="" className="w-20 object-cover" />
             <div>
               <p className="font-montserrat font-bold text-lg leading-tight">
                 {lang === "ru" && "Карбонара"}
@@ -59,7 +59,7 @@ const Home = ({ lang }) => {
             </div>
           </div>
           <div className="flex items-center gap-4">
-            <img src={pizza} alt="" className="w-28 h-28 object-cover" />
+            <img src={pizza} alt="" className="w-20 object-cover" />
             <div>
               <p className="font-montserrat font-bold text-lg leading-tight">
                 {lang === "ru" && "Карбонара"}

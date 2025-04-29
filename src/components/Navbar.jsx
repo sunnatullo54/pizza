@@ -5,7 +5,7 @@ import LanguageSelector from "./Language";
 
 const Navbar = ({ cartItems, lang, setLang }) => {
   const navigate = useNavigate();
-  const [isMenuOpen, setIsMenuOpen] = useState(false); 
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const toCard = () => {
     navigate("./Card");
@@ -17,9 +17,15 @@ const Navbar = ({ cartItems, lang, setLang }) => {
     { path: "/Paste", label: { ru: "Паста", uz: "Makaron", en: "Pasta" } },
     { path: "/Soups", label: { ru: "Супы", uz: "Sho‘rvalar", en: "Soups" } },
     { path: "/Salads", label: { ru: "Салаты", uz: "Salatlar", en: "Salads" } },
-    { path: "/Drinks", label: { ru: "Напитки", uz: "Ichimliklar", en: "Drinks" } },
+    {
+      path: "/Drinks",
+      label: { ru: "Напитки", uz: "Ichimliklar", en: "Drinks" },
+    },
     { path: "/Stock", label: { ru: "Акции", uz: "Aksiyalar", en: "Stock" } },
-    { path: "/Contacts", label: { ru: "Контакты", uz: "Kontaktlar", en: "Contacts" } },
+    {
+      path: "/Contacts",
+      label: { ru: "Контакты", uz: "Kontaktlar", en: "Contacts" },
+    },
   ];
 
   return (
@@ -29,16 +35,21 @@ const Navbar = ({ cartItems, lang, setLang }) => {
           <img src={logo} alt="Logo" className="w-24 md:w-auto" />
           <div className="hidden md:block text-sm">
             <div className="font-[Montserrat] font-semibold text-[17px] leading-[100%]">
-              {lang === "ru" && "Доставка пасты"} {lang === "uz" && "Makaron yetkazib berish"} {lang === "en" && "Pasta delivery"}
+              {lang === "ru" && "Доставка пасты"}{" "}
+              {lang === "uz" && "Makaron yetkazib berish"}{" "}
+              {lang === "en" && "Pasta delivery"}
               <span className="text-yellow-500">
                 {" "}
-                {lang === "ru" && "Москва"} {lang === "uz" && "Moskva"} {lang === "en" && "Moscow"}
+                {lang === "ru" && "Москва"} {lang === "uz" && "Moskva"}{" "}
+                {lang === "en" && "Moscow"}
               </span>
             </div>
             <div className="flex items-center font-[Montserrat] font-semibold text-[13px] leading-[100%] pt-2 gap-4">
               <span className="flex gap-1 items-center">
                 <img src={yandexEda} alt="" className="w-4 h-4" />
-                {lang === "ru" && "Яндекс еда"} {lang === "uz" && "Yandex taomlari"} {lang === "en" && "Yandex food"}
+                {lang === "ru" && "Яндекс еда"}{" "}
+                {lang === "uz" && "Yandex taomlari"}{" "}
+                {lang === "en" && "Yandex food"}
                 <img src={point} alt="" className="w-3 h-3" />
                 <span className="flex gap-1 items-center">
                   4.8 <img src={star} alt="" className="w-4 h-4" />
@@ -47,7 +58,7 @@ const Navbar = ({ cartItems, lang, setLang }) => {
               <span className="flex gap-1 items-center">
                 {lang === "ru" && "Время доставки"}
                 {lang === "uz" && "Yetkazish vaqti"}
-                {lang === "en" && "Delivery time"} 
+                {lang === "en" && "Delivery time"}
                 <img src={point} alt="" className="w-3 h-3" />
                 {lang === "ru" && "от 31 мин"}
                 {lang === "uz" && "31 daqiqadan boshlab"}
@@ -62,7 +73,9 @@ const Navbar = ({ cartItems, lang, setLang }) => {
             {lang === "uz" && "Qo'ng'iroqni talab qiling"}
             {lang === "en" && "Request a call"}
           </button>
-          <div className="text-yellow-500 font-bold text-lg hidden md:block">8 499 391-84-49</div>
+          <div className="text-yellow-500 font-bold text-lg hidden md:block">
+            8 499 391-84-49
+          </div>
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             className="md:hidden flex items-center px-3 py-2 border rounded text-black border-black"
@@ -85,7 +98,7 @@ const Navbar = ({ cartItems, lang, setLang }) => {
                   }
                   onClick={() => setIsMenuOpen(false)}
                 >
-                  {item.label[lang]} 
+                  {item.label[lang]}
                 </NavLink>
               </li>
             ))}
@@ -97,30 +110,32 @@ const Navbar = ({ cartItems, lang, setLang }) => {
           </button>
         </div>
       )}
-      <div className="hidden md:flex justify-between items-center pt-4">
-        <ul className="flex gap-4 bg-gray-100 p-2 rounded-xl">
-          {menuItems.map((item) => (
-            <li key={item.path}>
-              <NavLink
-                to={item.path}
-                className={({ isActive }) =>
-                  isActive
-                    ? "bg-white px-4 py-2 rounded-xl shadow text-black font-semibold"
-                    : "px-4 py-2 text-black hover:bg-gray-200 rounded-xl"
-                }
-              >
-                {item.label[lang]}
-              </NavLink>
-            </li>
-          ))}
-        </ul>
+      <div className="">
+        <div className="hidden md:flex justify-between items-center pt-4 sticky top-25 z-50">
+          <ul className="flex gap-4 bg-gray-100 p-2 rounded-xl">
+            {menuItems.map((item) => (
+              <li key={item.path}>
+                <NavLink
+                  to={item.path}
+                  className={({ isActive }) =>
+                    isActive
+                      ? "bg-white px-4 py-2 rounded-xl shadow text-black font-semibold"
+                      : "px-4 py-2 text-black hover:bg-gray-200 rounded-xl"
+                  }
+                >
+                  {item.label[lang]}
+                </NavLink>
+              </li>
+            ))}
+          </ul>
 
-        <button onClick={toCard} className="Basket">
-          {lang === "ru" && "Корзина"}
-          {lang === "uz" && "Savatcha"}
-          {lang === "en" && "Cart"} | {cartItems.length}
-        </button>
-        <LanguageSelector setLang={setLang} />
+          <button onClick={toCard} className="Basket">
+            {lang === "ru" && "Корзина"}
+            {lang === "uz" && "Savatcha"}
+            {lang === "en" && "Cart"} | {cartItems.length}
+          </button>
+          <LanguageSelector setLang={setLang} />
+        </div>
       </div>
     </div>
   );

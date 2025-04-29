@@ -14,32 +14,32 @@ import CardPage from "./page/Card";
 
 function App() {
   const [lang, setLang] = useState("ru");
-  const [cartItems, setCartItems] = useState([]);
+  const [cart, setCartItems] = useState([]);
 
   const addToCard = (item) => {
-    const found = cartItems.some((i) => i.id == item.id);
+    const found = cart.some(i => i.id == item.id);
     if (!found) {
-      setCartItems([...cartItems, item]);
+      setCartItems([...cart, item]);
     } else {
       alert("qoshilgan");
     }
   };
 
   const increaseCount = (id) => {
-    setCartItems(cartItems.map(item => 
+    setCartItems(cart.map(item => 
       item.id === id ? { ...item, count: item.count + 1 } : item
     ));
   };
 
   const decreaseCount = (id) => {
-    setCartItems(cartItems.map(item => 
+    setCartItems(cart.map(item => 
       item.id === id && item.count > 1 ? { ...item, count: item.count - 1 } : item
     ));
   };
 
   return (
     <>
-      <Navbar cartItems={cartItems} lang={lang} setLang={setLang} />
+      <Navbar cartItems={cart} lang={lang} setLang={setLang} />
       <main>
         <Routes>
           <Route exast path="/" element={<Home lang={lang} setLang={setLang}/>} />
@@ -50,7 +50,7 @@ function App() {
           <Route exast path="/Drinks" element={<Drinks addToCard={addToCard} lang={lang} setLang={setLang}/>} />
           <Route exast path="/Stock" element={<Stock lang={lang} setLang={setLang}/>} />
           <Route exast path="/Contacts" element={<Contacts lang={lang} setLang={setLang}/>} />
-          <Route path="/Card" element={<CardPage cardItems={cartItems} increaseCount={increaseCount} decreaseCount={decreaseCount} lang={lang} setLang={setLang}/>} />
+          <Route path="/Card" element={<CardPage cardItems={cart} increaseCount={increaseCount} decreaseCount={decreaseCount} lang={lang} setLang={setLang}/>} />
         </Routes>
       </main>
       <Footer lang={lang} setLang={setLang}/>
