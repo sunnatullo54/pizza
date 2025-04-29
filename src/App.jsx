@@ -9,8 +9,8 @@ import Salads from "./page/Salads";
 import Drinks from "./page/Drinks";
 import Stock from "./page/Stock";
 import Contacts from "./page/Contacts";
-import Footer from "./components/footer";
-import CardPage from "./page/Card";
+import Footer from "./components/Footer";
+import Card from "./page/Card";
 
 function App() {
   const [lang, setLang] = useState("ru");
@@ -50,7 +50,7 @@ function App() {
           <Route exast path="/Drinks" element={<Drinks addToCard={addToCard} lang={lang} setLang={setLang}/>} />
           <Route exast path="/Stock" element={<Stock lang={lang} setLang={setLang}/>} />
           <Route exast path="/Contacts" element={<Contacts lang={lang} setLang={setLang}/>} />
-          <Route path="/Card" element={<CardPage cardItems={cart} increaseCount={increaseCount} decreaseCount={decreaseCount} lang={lang} setLang={setLang}/>} />
+          <Route path="/Card" element={<Card cardItems={cart} increaseCount={increaseCount} decreaseCount={decreaseCount} lang={lang} setLang={setLang}/>} />
         </Routes>
       </main>
       <Footer lang={lang} setLang={setLang}/>
