@@ -34,7 +34,7 @@ const pizza = ({ addToCard, lang }) => {
                 className="bg-yellow-400 hover:bg-yellow-500 text-white px-3 py-1 rounded transition"
               >
                 {lang === "ru" && "В корзину"}
-                {lang === "uz" && "Savatchaga qo'shish"}
+                {lang === "uz" && "Savatga"}
                 {lang === "en" && "Add to cart"}
               </button>
             </div>

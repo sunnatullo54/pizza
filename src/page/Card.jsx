@@ -24,7 +24,7 @@ const Card = ({ cardItems, increaseCount, decreaseCount, lang }) => {
                 <img src={item.img} className="w-[100px]" alt={item.title?.ru} />
                 <div>
                   <h2 className="text text-lg font-bold">{item.title?.[lang]}</h2>
-                  <p className="text-p text-sm text-gray-600 w-[600px]">
+                  <p className="text-p text-sm text-gray-600">
                     {item.description?.[lang]}
                   </p>
                 </div>
