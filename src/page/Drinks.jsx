@@ -1,13 +1,16 @@
 import React from "react";
 import { drink_data } from '../assets/drink/drink';
 
-const drink = ({ addToCard, lang }) => {
+const drink = ({ addToCard, toggleFavorite, favoriteItems, lang }) => {
   return (
     <div className="container">
       <h1 className="text-yellov">{drink_data[0]?.category?.[lang]}</h1>
-      <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 pt-[30px]">
+      <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 pt-[30px] sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
         {drink_data.map((drink, index) => (
           <div key={index} className="rounded-2xl p-4 bg-white">
+            <button onClick={() => toggleFavorite(drink)} className="text-xl absolute">
+              {favoriteItems.some((item) => item.id === drink.id) ? "❤️" : "🤍"}
+            </button>
             <div className="w-full h-40 rounded-lg mb-3 flex items-center justify-center">
               <img src={drink.img} alt="" />
             </div>
@@ -17,7 +20,7 @@ const drink = ({ addToCard, lang }) => {
               <span className="font-bold">{drink.price}₽</span>
               <button onClick={() => addToCard(drink)} className="bg-yellow-400 hover:bg-yellow-500 text-white px-3 py-1 rounded">
                 {lang === "ru" && "В корзину"}
-                {lang === "uz" && "Savatchaga qo'shish"}
+                {lang === "uz" && "Savatga"}
                 {lang === "en" && "Add to cart"}
               </button>
             </div>

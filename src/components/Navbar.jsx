@@ -10,6 +10,9 @@ const Navbar = ({ cartItems, lang, setLang }) => {
   const toCard = () => {
     navigate("./Card");
   };
+  const toFavorite = () => {
+    navigate("./Favorite");
+  };
 
   const menuItems = [
     { path: "/", label: { ru: "Дом", uz: "Bosh sahifa", en: "Home" } },
@@ -134,6 +137,11 @@ const Navbar = ({ cartItems, lang, setLang }) => {
         </ul>
 
         <div className="flex gap-[15px]">
+          <button onClick={toFavorite} className="Basket">
+            {lang === "ru" && "любимый"}
+            {lang === "uz" && "sevimli"}
+            {lang === "en" && "Favorite"}
+          </button>
           <button onClick={toCard} className="Basket">
             {lang === "ru" && "Корзина"}
             {lang === "uz" && "Savatcha"}

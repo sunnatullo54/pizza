@@ -2,15 +2,14 @@ import React from "react";
 import { pizza_data } from "../assets/data";
 import "../index.css";
 
-
-const pizza = ({ addToCard, lang }) => {
+const Pizza = ({ addToCard, toggleFavorite, favoriteItems, lang }) => {
   return (
     <div className="container">
       <h1 className="text-yellov">{pizza_data[0]?.category?.[lang]}</h1>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 pt-[30px]">
-        {pizza_data.map((pizza, index) => (
+        {pizza_data.map((pizza) => (
           <div
-            key={index}
+            key={pizza.id}
             className="relative rounded-2xl p-4 bg-white shadow-md"
           >
             {pizza.isNew && (
@@ -18,10 +17,13 @@ const pizza = ({ addToCard, lang }) => {
                 NEW
               </div>
             )}
+            <button onClick={() => toggleFavorite(pizza)} className="text-xl absolute">
+              {favoriteItems.some((item) => item.id === pizza.id) ? "❤️" : "🤍"}
+            </button>
             <div className="w-full h-57 rounded-lg mb-3 flex items-center justify-center">
               <img
                 src={pizza.img}
-                alt={pizza.title?.ru || "Pizza"}
+                alt={pizza.title?.[lang] || "Pizza"}
                 className="h-full object-contain"
               />
             </div>
@@ -45,4 +47,4 @@ const pizza = ({ addToCard, lang }) => {
   );
 };
 
-export default pizza;
+export default Pizza;

@@ -2,7 +2,7 @@ import React from "react";
 import empty from "../assets/gif/empty.gif";
 import "../index.css";
 
-const Card = ({ cardItems, increaseCount, decreaseCount, lang }) => {
+const Card = ({ cardItems, increaseCount, decreaseCount, lang, remove }) => {
   const totalPrice = cardItems.reduce(
     (sum, item) => sum + item.price * item.count,
     0
@@ -72,7 +72,14 @@ const Card = ({ cardItems, increaseCount, decreaseCount, lang }) => {
                 >
                   +
                 </button>
+                <button
+                  onClick={() => remove(item.id)} 
+                  className="text-red-500 ml-2"
+                >
+                  ✖
+                </button>
               </div>
+
               <span className="text-yellow-500 font-bold mt-4 md:mt-0 block text-right md:text-left">
                 {item.price * item.count}₽
               </span>
