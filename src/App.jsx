@@ -40,7 +40,7 @@ function App() {
     if (!found) {
       setCartItems([...cart, { ...item, count: 1 }]);
     } else {
-      alert("Bu mahsulot savatda mavjud");
+      alert("mavjud");
     }
   };
 
