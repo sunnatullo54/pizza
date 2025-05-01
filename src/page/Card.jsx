@@ -47,6 +47,12 @@ const Card = ({ cardItems, increaseCount, decreaseCount, lang, remove }) => {
                     >
                       +
                     </button>
+                    <button
+                      onClick={() => remove(item.id)}
+                      className="text-red-500"
+                    >
+                      ✖
+                    </button>
                   </div>
                 </div>
                 <div className="mt-4 md:mt-0">
@@ -73,8 +79,8 @@ const Card = ({ cardItems, increaseCount, decreaseCount, lang, remove }) => {
                   +
                 </button>
                 <button
-                  onClick={() => remove(item.id)} 
-                  className="text-red-500 ml-2"
+                  onClick={() => remove(item.id)}
+                  className="text-red-500"
                 >
                   ✖
                 </button>
