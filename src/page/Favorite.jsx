@@ -22,7 +22,6 @@ const Favorite = ({ favoriteItems, addToCard, removeFromFavorite, lang }) => {
               key={item.id}
               className="relative rounded-2xl p-4 bg-white shadow-md"
             >
-              {/* ❤️ yurakcha tugmasi */}
               <button
                 onClick={() => removeFromFavorite(item.id)}
                 className="absolute top-2 left-2 text-red-500 text-xl"
