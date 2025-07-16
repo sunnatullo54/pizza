@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Heart, ShoppingCart, Star, Clock } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 const ProductCard = ({ 
   product, 
@@ -47,7 +48,13 @@ const ProductCard = ({
   };
 
   return (
-    <div className="group relative bg-white rounded-2xl p-4 shadow-sm hover:shadow-lg transition-all duration-300 border border-gray-100">
+    <motion.div 
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      whileHover={{ y: -5 }}
+      transition={{ duration: 0.3 }}
+      className="group relative bg-white rounded-2xl p-4 shadow-sm hover:shadow-lg transition-all duration-300 border border-gray-100"
+    >
       {/* Favorite Button */}
       <button
         onClick={handleToggleFavorite}
@@ -134,7 +141,7 @@ const ProductCard = ({
           </button>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

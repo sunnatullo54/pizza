@@ -1,19 +1,34 @@
 import React from "react";
 import { pizza } from "../assets/data";
 import Swiper from "./Swiper";
+import StatsSection from "./StatsSection";
+import { motion } from "framer-motion";
 
 const Home = ({ lang }) => {
   return (
-    <div className="container">
+    <motion.div 
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.5 }}
+      className="container"
+    >
       <Swiper />
-      <div className="">
+      
+      <StatsSection lang={lang} />
+      
+      <div className="py-12">
         <h2 className="text-yellov">
           {lang === "ru" && "Новинки"}
           {lang === "uz" && "Yangi elementlar"}
           {lang === "en" && "New items"}
         </h2>
-        <div className="flex flex-wrap items-center justify-between grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
-          <div className="flex items-center gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-8">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.1 }}
+            className="flex items-center gap-4 bg-white p-4 rounded-xl shadow-sm hover:shadow-md transition-shadow"
+          >
             <img src={pizza} alt="" className="w-20 object-cover" />
             <div>
               <p className="font-montserrat font-bold text-lg leading-tight">
@@ -27,8 +42,13 @@ const Home = ({ lang }) => {
                 {lang === "en" && "from 120 ₽"}
               </p>
             </div>
-          </div>
-          <div className="flex items-center gap-4">
+          </motion.div>
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2 }}
+            className="flex items-center gap-4 bg-white p-4 rounded-xl shadow-sm hover:shadow-md transition-shadow"
+          >
             <img src={pizza} alt="" className="w-20 object-cover" />
             <div>
               <p className="font-montserrat font-bold text-lg leading-tight">
@@ -42,8 +62,13 @@ const Home = ({ lang }) => {
                 {lang === "en" && "from 120 ₽"}
               </p>
             </div>
-          </div>
-          <div className="flex items-center gap-4">
+          </motion.div>
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3 }}
+            className="flex items-center gap-4 bg-white p-4 rounded-xl shadow-sm hover:shadow-md transition-shadow"
+          >
             <img src={pizza} alt="" className="w-20 object-cover" />
             <div>
               <p className="font-montserrat font-bold text-lg leading-tight">
@@ -57,8 +82,13 @@ const Home = ({ lang }) => {
                 {lang === "en" && "from 120 ₽"}
               </p>
             </div>
-          </div>
-          <div className="flex items-center gap-4">
+          </motion.div>
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.4 }}
+            className="flex items-center gap-4 bg-white p-4 rounded-xl shadow-sm hover:shadow-md transition-shadow"
+          >
             <img src={pizza} alt="" className="w-20 object-cover" />
             <div>
               <p className="font-montserrat font-bold text-lg leading-tight">
@@ -72,10 +102,10 @@ const Home = ({ lang }) => {
                 {lang === "en" && "from 120 ₽"}
               </p>
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

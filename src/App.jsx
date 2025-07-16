@@ -3,6 +3,8 @@ import { Routes, Route } from "react-router-dom";
 import { useLocalStorage } from "./hooks/useLocalStorage";
 import { useNotification } from "./hooks/useNotification";
 import NotificationContainer from "./components/NotificationContainer";
+import ScrollToTop from "./components/ScrollToTop";
+import FloatingQuickOrder from "./components/FloatingQuickOrder";
 import Home from "./components/Home";
 import Navbar from "./components/Navbar";
 import Pizza from "./page/Pizza";
@@ -115,6 +117,8 @@ function App() {
         notifications={notifications}
         removeNotification={removeNotification}
       />
+      <ScrollToTop />
+      <FloatingQuickOrder lang={lang} />
       <Navbar cartItems={cart} lang={lang} setLang={setLang} />
       <main>
         <Routes>
