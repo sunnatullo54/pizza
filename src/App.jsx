@@ -43,17 +43,6 @@ function App() {
     } else {
       setFavoriteItems([...favorite, item]);
     }
-    
-    addNotification(
-      isFavorited ? 'info' : 'success',
-      isFavorited 
-        ? (lang === 'ru' ? 'Удалено из избранного' :
-           lang === 'uz' ? 'Sevimlilardan olib tashlandi' :
-           'Removed from favorites')
-        : (lang === 'ru' ? 'Добавлено в избранное' :
-           lang === 'uz' ? 'Sevimlilarga qo\'shildi' :
-           'Added to favorites')
-    );
   };  
 
   const removeFromFavorite = (id) => {
@@ -89,11 +78,6 @@ function App() {
         item.id === id ? { ...item, count: item.count + 1 } : item
       )
     );
-    setFavoriteItems(
-      favorite.map((item) =>
-        item.id === id ? { ...item, count: item.count + 1 } : item
-      )
-    );
   };
 
   const decreaseCount = (id) => {
@@ -104,40 +88,98 @@ function App() {
           : item
       )
     );
-    setFavoriteItems(
-      favorite.map((item) =>
-        item.id === id && item.count > 1
-          ? { ...item, count: item.count - 1 }
-          : item
-      )
-    );
   };
 
   return (
-    <>
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 transition-colors duration-300">
       <NotificationContainer 
         notifications={notifications}
         removeNotification={removeNotification}
       />
       <ScrollToTop />
       <FloatingQuickOrder lang={lang} />
-      <Navbar cartItems={cart} lang={lang} setLang={setLang} isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode} />
-      <main>
+      
+      <Navbar 
+        cartItems={cart} 
+        lang={lang} 
+        setLang={setLang} 
+        isDarkMode={isDarkMode} 
+        toggleDarkMode={toggleDarkMode} 
+      />
+      
+      <main className="min-h-screen">
         <Routes>
-          <Route path="/" element={<Home lang={lang} setLang={setLang} />} />
-          <Route path="/Pizza" element={<Pizza addToCard={addToCard} lang={lang} favoriteItems={favorite} toggleFavorite={toggleFavorite} showNotification={addNotification}/>}/>
-          <Route path="/Paste" element={<Pasta addToCard={addToCard} lang={lang} favoriteItems={favorite} toggleFavorite={toggleFavorite} showNotification={addNotification}/>}/>
-          <Route path="/Soups" element={<Soups addToCard={addToCard} lang={lang} favoriteItems={favorite} toggleFavorite={toggleFavorite} showNotification={addNotification}/>}/>
-          <Route path="/Salads" element={<Salads addToCard={addToCard} lang={lang} favoriteItems={favorite} toggleFavorite={toggleFavorite} showNotification={addNotification}/>}/>
-          <Route path="/Drinks" element={<Drinks addToCard={addToCard} lang={lang} favoriteItems={favorite} toggleFavorite={toggleFavorite} showNotification={addNotification}/>} />
-          <Route path="/Stock" element={<Stock lang={lang} setLang={setLang} />}/>
-          <Route path="/Contacts" element={<Contacts lang={lang} setLang={setLang} />}/>
-          <Route path="/Card" element={<Card cardItems={cart} increaseCount={increaseCount} decreaseCount={decreaseCount} lang={lang} setLang={setLang} remove={remove} showNotification={addNotification}/>}/>
-          <Route path="/Favorite" element={<Favorite favoriteItems={favorite} addToCard={addToCard} removeFromFavorite={removeFromFavorite} lang={lang}/>}/>
+          <Route path="/" element={<Home lang={lang} />} />
+          <Route path="/Pizza" element={
+            <Pizza 
+              addToCard={addToCard} 
+              lang={lang} 
+              favoriteItems={favorite} 
+              toggleFavorite={toggleFavorite} 
+              showNotification={addNotification}
+            />
+          }/>
+          <Route path="/Paste" element={
+            <Pasta 
+              addToCard={addToCard} 
+              lang={lang} 
+              favoriteItems={favorite} 
+              toggleFavorite={toggleFavorite} 
+              showNotification={addNotification}
+            />
+          }/>
+          <Route path="/Soups" element={
+            <Soups 
+              addToCard={addToCard} 
+              lang={lang} 
+              favoriteItems={favorite} 
+              toggleFavorite={toggleFavorite} 
+              showNotification={addNotification}
+            />
+          }/>
+          <Route path="/Salads" element={
+            <Salads 
+              addToCard={addToCard} 
+              lang={lang} 
+              favoriteItems={favorite} 
+              toggleFavorite={toggleFavorite} 
+              showNotification={addNotification}
+            />
+          }/>
+          <Route path="/Drinks" element={
+            <Drinks 
+              addToCard={addToCard} 
+              lang={lang} 
+              favoriteItems={favorite} 
+              toggleFavorite={toggleFavorite} 
+              showNotification={addNotification}
+            />
+          } />
+          <Route path="/Stock" element={<Stock lang={lang} />}/>
+          <Route path="/Contacts" element={<Contacts lang={lang} />}/>
+          <Route path="/Card" element={
+            <Card 
+              cardItems={cart} 
+              increaseCount={increaseCount} 
+              decreaseCount={decreaseCount} 
+              lang={lang} 
+              remove={remove} 
+              showNotification={addNotification}
+            />
+          }/>
+          <Route path="/Favorite" element={
+            <Favorite 
+              favoriteItems={favorite} 
+              addToCard={addToCard} 
+              removeFromFavorite={removeFromFavorite} 
+              lang={lang}
+            />
+          }/>
         </Routes>
       </main>
-      <Footer lang={lang} setLang={setLang} />
-    </>
+      
+      <Footer lang={lang} />
+    </div>
   );
 }
 
