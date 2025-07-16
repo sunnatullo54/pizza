@@ -81,3 +81,5 @@ export const initializeTelegramBot = (botToken, chatId) => {
   telegramBot = createTelegramBot(botToken, chatId);
   return telegramBot;
 };
+
+export { telegramBot }
