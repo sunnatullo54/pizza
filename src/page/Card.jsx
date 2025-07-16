@@ -130,16 +130,12 @@ const Card = ({ cardItems, increaseCount, decreaseCount, lang, remove, showNotif
 
                 {/* Mobile total */}
                 <div className="md:hidden text-right">
-                  <div className="text-xl font-bold text-gray-800">
+                  <h2 className="text-xl font-bold text-gray-800">
                     {item.title?.[lang]}
                   </h2>
                   <p className="text-p text-sm text-gray-600">
                     {item.description?.[lang]}
                   </p>
-                </div>
-              </div>
-                    {item.price * item.count}₽
-                  </div>
                 </div>
             </div>
           ))}
