@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import { useLocalStorage } from "./hooks/useLocalStorage";
 import { useNotification } from "./hooks/useNotification";
+import { useDarkMode } from "./hooks/useDarkMode";
+import { initializeTelegramBot } from "./services/telegramBot";
 import NotificationContainer from "./components/NotificationContainer";
 import ScrollToTop from "./components/ScrollToTop";
 import FloatingQuickOrder from "./components/FloatingQuickOrder";
@@ -24,6 +26,16 @@ function App() {
   const [cart, setCartItems] = useLocalStorage(STORAGE_KEYS.CART, []);
   const [favorite, setFavoriteItems] = useLocalStorage(STORAGE_KEYS.FAVORITES, []);
   const { notifications, addNotification, removeNotification } = useNotification();
+  const { isDarkMode, toggleDarkMode } = useDarkMode();
+
+  // Telegram bot ni ishga tushirish
+  React.useEffect(() => {
+    const botToken = localStorage.getItem('telegram_bot_token');
+    const chatId = localStorage.getItem('telegram_chat_id');
+    if (botToken && chatId) {
+      initializeTelegramBot(botToken, chatId);
+    }
+  }, []);
 
   const remove = (id) => {
     setCartItems(cart.filter(item => item.id !== id));
@@ -119,15 +131,15 @@ function App() {
       />
       <ScrollToTop />
       <FloatingQuickOrder lang={lang} />
-      <Navbar cartItems={cart} lang={lang} setLang={setLang} />
+      <Navbar cartItems={cart} lang={lang} setLang={setLang} isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode} />
       <main>
         <Routes>
           <Route path="/" element={<Home lang={lang} setLang={setLang} />} />
           <Route path="/Pizza" element={<Pizza addToCard={addToCard} lang={lang} favoriteItems={favorite} toggleFavorite={toggleFavorite} showNotification={addNotification}/>}/>
-          <Route path="/Paste" element={<Pasta addToCard={addToCard} lang={lang} favoriteItems={favorite} toggleFavorite={toggleFavorite}/>}/>
-          <Route path="/Soups" element={<Soups addToCard={addToCard} lang={lang} favoriteItems={favorite} toggleFavorite={toggleFavorite}/>}/>
-          <Route path="/Salads" element={<Salads addToCard={addToCard} lang={lang} favoriteItems={favorite} toggleFavorite={toggleFavorite}/>}/>
-          <Route path="/Drinks" element={<Drinks addToCard={addToCard} lang={lang} favoriteItems={favorite} toggleFavorite={toggleFavorite}/>} />
+          <Route path="/Paste" element={<Pasta addToCard={addToCard} lang={lang} favoriteItems={favorite} toggleFavorite={toggleFavorite} showNotification={addNotification}/>}/>
+          <Route path="/Soups" element={<Soups addToCard={addToCard} lang={lang} favoriteItems={favorite} toggleFavorite={toggleFavorite} showNotification={addNotification}/>}/>
+          <Route path="/Salads" element={<Salads addToCard={addToCard} lang={lang} favoriteItems={favorite} toggleFavorite={toggleFavorite} showNotification={addNotification}/>}/>
+          <Route path="/Drinks" element={<Drinks addToCard={addToCard} lang={lang} favoriteItems={favorite} toggleFavorite={toggleFavorite} showNotification={addNotification}/>} />
           <Route path="/Stock" element={<Stock lang={lang} setLang={setLang} />}/>
           <Route path="/Contacts" element={<Contacts lang={lang} setLang={setLang} />}/>
           <Route path="/Card" element={<Card cardItems={cart} increaseCount={increaseCount} decreaseCount={decreaseCount} lang={lang} setLang={setLang} remove={remove} showNotification={addNotification}/>}/>

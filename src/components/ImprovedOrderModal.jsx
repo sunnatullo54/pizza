@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { X, User, Phone, MapPin, CreditCard, Clock, Truck } from 'lucide-react';
 import { PAYMENT_METHODS, DELIVERY_INFO } from '../utils/constants';
+import { telegramBot } from '../services/telegramBot';
 
 const ImprovedOrderModal = ({ isOpen, onClose, cartItems, totalPrice, lang, onOrderSuccess }) => {
   const [orderData, setOrderData] = useState({
@@ -55,6 +56,19 @@ const ImprovedOrderModal = ({ isOpen, onClose, cartItems, totalPrice, lang, onOr
       await new Promise(resolve => setTimeout(resolve, 2000));
       
       const orderNumber = Math.floor(Math.random() * 10000);
+      
+      // Telegram botga xabar yuborish
+      if (telegramBot) {
+        try {
+          await telegramBot.sendOrderNotification({
+            ...orderData,
+            total: finalTotal,
+            orderNumber
+          }, cartItems, lang);
+        } catch (error) {
+          console.error('Telegram bot xatosi:', error);
+        }
+      }
       
       onOrderSuccess?.({
         orderNumber,

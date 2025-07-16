@@ -1,36 +1,62 @@
 import React from "react";
 import { pasta_data } from "../assets/pasta/pasta";
+import ProductCard from "../components/ProductCard";
+import SearchAndFilter from "../components/SearchAndFilter";
+import { useSearch } from "../hooks/useSearch";
 import "../index.css";
 
-const pasta = ({ addToCard, toggleFavorite, favoriteItems, lang }) => {
+const pasta = ({ addToCard, toggleFavorite, favoriteItems, lang, showNotification }) => {
+  const {
+    searchTerm,
+    setSearchTerm,
+    selectedCategory,
+    setSelectedCategory,
+    priceRange,
+    setPriceRange,
+    sortBy,
+    setSortBy,
+    filteredData
+  } = useSearch(pasta_data, lang);
+
   return (
     <div className="container">
       <h1 className="text-yellov">{pasta_data[0]?.category?.[lang]}</h1>
-      <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 pt-[30px] sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-        {pasta_data.map((pasta, index) => (
-          <div key={index} className="rounded-2xl p-4 bg-white">
-            <button onClick={() => toggleFavorite(pasta)} className="text-xl absolute">
-              {favoriteItems.some((item) => item.id === pasta.id) ? "❤️" : "🤍"}
-            </button>
-            <div className="w-full h-40 rounded-lg mb-3 flex items-center justify-center">
-              <img src={pasta.img} alt="" />
-            </div>
-            <h2 className="text pt-[40px]">{pasta.title?.[lang]}</h2>
-            <p className="text-p pt-[14px]">{pasta.description?.[lang]}</p>
-            <div className="flex justify-between items-center pt-[10px]">
-              <span className="font-bold">{pasta.price}₽</span>
-              <button
-                onClick={() => addToCard(pasta)}
-                className="bg-yellow-400 hover:bg-yellow-500 text-white px-3 py-1 rounded"
-              >
-                {lang === "ru" && "В корзину"}
-                {lang === "uz" && "Savatga"}
-                {lang === "en" && "Add to cart"}
-              </button>
-            </div>
-          </div>
-        ))}
-      </div>
+      
+      <SearchAndFilter
+        searchTerm={searchTerm}
+        setSearchTerm={setSearchTerm}
+        selectedCategory={selectedCategory}
+        setSelectedCategory={setSelectedCategory}
+        priceRange={priceRange}
+        setPriceRange={setPriceRange}
+        sortBy={sortBy}
+        setSortBy={setSortBy}
+        lang={lang}
+      />
+
+      {filteredData.length === 0 ? (
+        <div className="text-center py-12">
+          <p className="text-gray-500 text-lg">
+            {lang === 'ru' ? 'Товары не найдены' :
+             lang === 'uz' ? 'Mahsulotlar topilmadi' :
+             'No products found'}
+          </p>
+        </div>
+      ) : (
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+          {filteredData.map((pasta) => (
+            <ProductCard
+              key={pasta.id}
+              product={pasta}
+              addToCard={addToCard}
+              toggleFavorite={toggleFavorite}
+              favoriteItems={favoriteItems}
+              lang={lang}
+              showNotification={showNotification}
+            />
+          ))}
+        </div>
+      )}
     </div>
   );
 };

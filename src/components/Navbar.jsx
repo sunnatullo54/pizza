@@ -2,10 +2,14 @@ import React, { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { logo, star, yandexEda, point } from "../assets/data";
 import LanguageSelector from "./Language";
+import DarkModeToggle from "./DarkModeToggle";
+import BotConfigModal from "./BotConfigModal";
+import { Settings } from "lucide-react";
 
-const Navbar = ({ cartItems, lang, setLang }) => {
+const Navbar = ({ cartItems, lang, setLang, isDarkMode, toggleDarkMode }) => {
   const navigate = useNavigate();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isBotConfigOpen, setIsBotConfigOpen] = useState(false);
 
   const toCard = () => {
     navigate("./Card");
@@ -79,6 +83,14 @@ const Navbar = ({ cartItems, lang, setLang }) => {
           <div className="text-yellow-500 font-bold text-lg hidden md:block">
             8 499 391-84-49
           </div>
+          <button
+            onClick={() => setIsBotConfigOpen(true)}
+            className="p-2 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors hidden md:block"
+            title="Bot sozlamalari"
+          >
+            <Settings className="w-5 h-5 text-gray-600 dark:text-gray-400" />
+          </button>
+          <DarkModeToggle isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode} />
           <div className="md:hidden">
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -153,6 +165,12 @@ const Navbar = ({ cartItems, lang, setLang }) => {
           </div>
         </div>
       </div>
+      
+      <BotConfigModal
+        isOpen={isBotConfigOpen}
+        onClose={() => setIsBotConfigOpen(false)}
+        lang={lang}
+      />
     </div>
   );
 };
