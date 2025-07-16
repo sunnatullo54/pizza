@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { Routes, Route } from "react-router-dom";
+import { useLocalStorage } from "./hooks/useLocalStorage";
+import Notification from "./components/Notification";
 import Home from "./components/Home";
 import Navbar from "./components/Navbar";
 import Pizza from "./page/Pizza";
@@ -15,8 +17,13 @@ import Favorite from "./page/Favorite";
 
 function App() {
   const [lang, setLang] = useState("ru");
-  const [cart, setCartItems] = useState([]);
-  const [favorite, setFavoriteItems] = useState([]);
+  const [cart, setCartItems] = useLocalStorage("cart", []);
+  const [favorite, setFavoriteItems] = useLocalStorage("favorites", []);
+  const [notification, setNotification] = useState(null);
+
+  const showNotification = (type, message) => {
+    setNotification({ type, message });
+  };
 
   const remove = (id) => {
     setCartItems(cart.filter(item => item.id !== id));
@@ -39,8 +46,17 @@ function App() {
     const found = cart.some((i) => i.id === item.id);
     if (!found) {
       setCartItems([...cart, { ...item, count: 1 }]);
+      showNotification('success', 
+        lang === 'ru' ? 'Товар добавлен в корзину' :
+        lang === 'uz' ? 'Mahsulot savatga qo\'shildi' :
+        'Item added to cart'
+      );
     } else {
-      alert("mavjud");
+      showNotification('warning',
+        lang === 'ru' ? 'Товар уже в корзине' :
+        lang === 'uz' ? 'Mahsulot allaqachon savatda' :
+        'Item already in cart'
+      );
     }
   };
 
@@ -76,6 +92,13 @@ function App() {
 
   return (
     <>
+      {notification && (
+        <Notification
+          type={notification.type}
+          message={notification.message}
+          onClose={() => setNotification(null)}
+        />
+      )}
       <Navbar cartItems={cart} lang={lang} setLang={setLang} />
       <main>
         <Routes>

@@ -1,8 +1,12 @@
 import React from "react";
+import { useState } from "react";
 import empty from "../assets/gif/empty.gif";
+import OrderModal from "../components/OrderModal";
 import "../index.css";
 
 const Card = ({ cardItems, increaseCount, decreaseCount, lang, remove }) => {
+  const [isOrderModalOpen, setIsOrderModalOpen] = useState(false);
+  
   const totalPrice = cardItems.reduce(
     (sum, item) => sum + item.price * item.count,
     0
@@ -93,10 +97,31 @@ const Card = ({ cardItems, increaseCount, decreaseCount, lang, remove }) => {
           ))}
 
           <div className="text-yellow-500 text-right font-bold text-xl mt-6">
-            Общий: {totalPrice}₽
+            {lang === 'ru' ? 'Общий:' :
+             lang === 'uz' ? 'Jami:' :
+             'Total:'} {totalPrice}₽
+          </div>
+          
+          <div className="flex justify-end mt-4">
+            <button
+              onClick={() => setIsOrderModalOpen(true)}
+              className="bg-yellow-400 hover:bg-yellow-500 text-black font-bold py-3 px-8 rounded-lg transition"
+            >
+              {lang === 'ru' ? 'Оформить заказ' :
+               lang === 'uz' ? 'Buyurtma berish' :
+               'Place Order'}
+            </button>
           </div>
         </div>
       )}
+      
+      <OrderModal
+        isOpen={isOrderModalOpen}
+        onClose={() => setIsOrderModalOpen(false)}
+        cartItems={cardItems}
+        totalPrice={totalPrice}
+        lang={lang}
+      />
     </div>
   );
 };
