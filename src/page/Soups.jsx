@@ -33,9 +33,6 @@ const soups = ({ addToCard, toggleFavorite, favoriteItems, lang, showNotificatio
         setSortBy={setSortBy}
         lang={lang}
       />
-    </div>
-  );
-};
 
       {filteredData.length === 0 ? (
         <div className="text-center py-12">
@@ -60,4 +57,8 @@ const soups = ({ addToCard, toggleFavorite, favoriteItems, lang, showNotificatio
           ))}
         </div>
       )}
+    </div>
+  );
+};
+
 export default soups;
