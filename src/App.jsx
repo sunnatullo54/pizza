@@ -3,7 +3,6 @@ import { Routes, Route } from "react-router-dom";
 import { useLocalStorage } from "./hooks/useLocalStorage";
 import { useNotification } from "./hooks/useNotification";
 import { useDarkMode } from "./hooks/useDarkMode";
-import { initializeTelegramBot } from "./services/telegramBot";
 import NotificationContainer from "./components/NotificationContainer";
 import ScrollToTop from "./components/ScrollToTop";
 import FloatingQuickOrder from "./components/FloatingQuickOrder";
@@ -27,15 +26,6 @@ function App() {
   const [favorite, setFavoriteItems] = useLocalStorage(STORAGE_KEYS.FAVORITES, []);
   const { notifications, addNotification, removeNotification } = useNotification();
   const { isDarkMode, toggleDarkMode } = useDarkMode();
-
-  // Telegram bot ni ishga tushirish
-  React.useEffect(() => {
-    const botToken = localStorage.getItem('telegram_bot_token');
-    const chatId = localStorage.getItem('telegram_chat_id');
-    if (botToken && chatId) {
-      initializeTelegramBot(botToken, chatId);
-    }
-  }, []);
 
   const remove = (id) => {
     setCartItems(cart.filter(item => item.id !== id));
