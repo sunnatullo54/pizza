@@ -62,10 +62,3 @@ const Pizza = ({ addToCard, toggleFavorite, favoriteItems, lang, showNotificatio
 };
 
 export default Pizza;
-        ))}
-      </div>
-    </div>
-  );
-};
-
-export default Pizza;
