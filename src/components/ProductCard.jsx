@@ -53,16 +53,16 @@ const ProductCard = ({
       animate={{ opacity: 1, y: 0 }}
       whileHover={{ y: -5 }}
       transition={{ duration: 0.3 }}
-      className="group relative bg-white rounded-2xl p-4 shadow-sm hover:shadow-lg transition-all duration-300 border border-gray-100"
+      className="group relative bg-white dark:bg-gray-800 text-gray-800 dark:text-gray-100 rounded-2xl p-4 shadow-sm hover:shadow-lg transition-all duration-300 border border-gray-100 dark:border-gray-700"
     >
       {/* Favorite Button */}
       <button
         onClick={handleToggleFavorite}
-        className="absolute top-3 right-3 z-10 p-2 rounded-full bg-white/80 backdrop-blur-sm hover:bg-white transition-all duration-200"
+        className="absolute top-3 right-3 z-10 p-2 rounded-full bg-white/80 dark:bg-gray-700/70 backdrop-blur-sm hover:bg-white dark:hover:bg-gray-600 transition-all duration-200"
       >
         <Heart 
           className={`w-5 h-5 transition-colors ${
-            isFavorited ? 'text-red-500 fill-red-500' : 'text-gray-400 hover:text-red-500'
+            isFavorited ? 'text-red-500 fill-red-500' : 'text-gray-400 dark:text-gray-300 hover:text-red-500'
           }`} 
         />
       </button>
@@ -75,7 +75,7 @@ const ProductCard = ({
       )}
 
       {/* Product Image */}
-      <div className="relative w-full h-48 mb-4 rounded-xl overflow-hidden bg-gray-50">
+      <div className="relative w-full h-48 mb-4 rounded-xl overflow-hidden bg-gray-50 dark:bg-gray-700">
         <img
           src={product.img}
           alt={product.title?.[lang] || 'Product'}
@@ -86,16 +86,16 @@ const ProductCard = ({
 
       {/* Product Info */}
       <div className="space-y-3">
-        <h3 className="font-bold text-lg text-gray-800 line-clamp-2 group-hover:text-yellow-600 transition-colors">
+        <h3 className="font-bold text-lg text-gray-800 dark:text-gray-100 line-clamp-2 group-hover:text-yellow-600 transition-colors">
           {product.title?.[lang]}
         </h3>
         
-        <p className="text-sm text-gray-600 line-clamp-3">
+        <p className="text-sm text-gray-600 dark:text-gray-300 line-clamp-3">
           {product.description?.[lang]}
         </p>
 
         {/* Rating & Time (if available) */}
-        <div className="flex items-center gap-4 text-sm text-gray-500">
+        <div className="flex items-center gap-4 text-sm text-gray-500 dark:text-gray-400">
           {product.rating && (
             <div className="flex items-center gap-1">
               <Star className="w-4 h-4 fill-yellow-400 text-yellow-400" />
@@ -113,11 +113,11 @@ const ProductCard = ({
         {/* Price & Add to Cart */}
         <div className="flex items-center justify-between pt-2">
           <div className="flex flex-col">
-            <span className="text-xl font-bold text-gray-800">
+            <span className="text-xl font-bold text-gray-800 dark:text-white">
               {product.price}₽
             </span>
             {product.oldPrice && (
-              <span className="text-sm text-gray-400 line-through">
+              <span className="text-sm text-gray-400 dark:text-gray-500 line-through">
                 {product.oldPrice}₽
               </span>
             )}

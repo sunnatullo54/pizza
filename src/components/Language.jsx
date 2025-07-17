@@ -6,9 +6,9 @@ const LanguageSelector = ({ setLang }) => {
   const [selectedLang, setSelectedLang] = useState("RU");
 
   const languages = [
-    { code: "ru", label: "RU", flag: "🇷🇺" },
-    { code: "uz", label: "UZ", flag: "🇺🇿" },
-    { code: "en", label: "EN", flag: "🇺🇸" },
+    { code: "ru", label: "RU",  },
+    { code: "uz", label: "UZ",  },
+    { code: "en", label: "EN",  },
   ];
 
   const handleChange = (lang) => {

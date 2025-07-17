@@ -14,11 +14,11 @@ const SearchAndFilter = ({
   lang
 }) => {
   return (
-    <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-6 mb-6">
+    <div className="bg-white dark:bg-[#1A1F29] rounded-xl shadow-sm border border-gray-100 dark:border-gray-700 p-6 mb-6">
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
         {/* Search */}
         <div className="relative">
-          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 dark:text-gray-500 w-5 h-5" />
           <input
             type="text"
             placeholder={
@@ -28,17 +28,17 @@ const SearchAndFilter = ({
             }
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="w-full pl-10 pr-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent transition-all"
+            className="w-full pl-10 pr-4 py-3 border border-gray-200 dark:border-gray-700 rounded-lg bg-white dark:bg-[#2A303C] text-black dark:text-white placeholder:text-gray-400 dark:placeholder:text-gray-500 focus:ring-2 focus:ring-yellow-500 focus:border-transparent transition-all"
           />
         </div>
 
         {/* Category Filter */}
         <div className="relative">
-          <Filter className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+          <Filter className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 dark:text-gray-500 w-5 h-5" />
           <select
             value={selectedCategory}
             onChange={(e) => setSelectedCategory(e.target.value)}
-            className="w-full pl-10 pr-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-yellow-500 appearance-none bg-white"
+            className="w-full pl-10 pr-4 py-3 border border-gray-200 dark:border-gray-700 rounded-lg bg-white dark:bg-[#2A303C] text-black dark:text-white focus:ring-2 focus:ring-yellow-500 appearance-none transition-all"
           >
             <option value="all">
               {lang === 'ru' ? 'Все категории' :
@@ -55,7 +55,7 @@ const SearchAndFilter = ({
 
         {/* Price Range */}
         <div className="space-y-2">
-          <label className="flex items-center gap-2 text-sm font-medium text-gray-700">
+          <label className="flex items-center gap-2 text-sm font-medium text-gray-700 dark:text-gray-300">
             <SlidersHorizontal className="w-4 h-4" />
             {lang === 'ru' ? 'Цена до:' :
              lang === 'uz' ? 'Narx:' :
@@ -68,7 +68,7 @@ const SearchAndFilter = ({
             step="50"
             value={priceRange.max}
             onChange={(e) => setPriceRange({ ...priceRange, max: parseInt(e.target.value) })}
-            className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer slider"
+            className="w-full h-2 bg-gray-200 dark:bg-gray-700 rounded-lg appearance-none cursor-pointer slider"
           />
         </div>
 
@@ -77,7 +77,7 @@ const SearchAndFilter = ({
           <select
             value={sortBy}
             onChange={(e) => setSortBy(e.target.value)}
-            className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-yellow-500 bg-white"
+            className="w-full px-4 py-3 border border-gray-200 dark:border-gray-700 rounded-lg bg-white dark:bg-[#2A303C] text-black dark:text-white focus:ring-2 focus:ring-yellow-500 transition-all"
           >
             <option value="name">
               {lang === 'ru' ? 'По названию' :

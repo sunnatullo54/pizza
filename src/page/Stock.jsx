@@ -5,16 +5,21 @@ const Stock = ({ lang }) => {
   return (
     <div className="container">
       <h1 className="text-yellov">{stock_data[0]?.category?.[lang]}</h1>
-      <div className="grid grid-cols-1 lg:grid-cols-3">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
         {stock_data.map((stock, index) => (
-          <div key={index} className="rounded-2xl p-4 bg-white">
+          <div
+            key={index}
+            className="rounded-2xl p-4 bg-white dark:bg-zinc-800 dark:text-white"
+          >
             <div className="w-full h-40 rounded-lg flex items-center justify-center">
               <img src={stock.img} alt="" />
             </div>
-            <h2 className="text">{stock.title?.[lang]}</h2>
-            <p className="text-p pt-[14px]">{stock.description?.[lang]}</p>
+            <h2 className="text dark:text-white">{stock.title?.[lang]}</h2>
+            <p className="text-p pt-[14px] dark:text-gray-400">
+              {stock.description?.[lang]}
+            </p>
             <div className="flex justify-between items-center pt-[10px]">
-              <span className="font-bold">{stock.price}₽</span>
+              <span className="font-bold dark:text-white">{stock.price}₽</span>
               <button className="bg-yellow-400 hover:bg-yellow-500 text-white px-3 py-1 rounded">
                 {lang === "ru" && "В корзину"}
                 {lang === "uz" && "Savatchaga qo'shish"}

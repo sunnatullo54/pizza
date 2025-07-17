@@ -52,8 +52,8 @@ const Pizza = ({ addToCard, toggleFavorite, favoriteItems, lang, showNotificatio
               toggleFavorite={toggleFavorite}
               favoriteItems={favoriteItems}
               lang={lang}
-              showNotification={showNotification}
-            />
+              showNotification={showNotification} 
+            /> 
           ))}
         </div>
       )}

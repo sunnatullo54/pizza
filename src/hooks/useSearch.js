@@ -7,26 +7,27 @@ export const useSearch = (data, lang) => {
   const [sortBy, setSortBy] = useState('name');
 
   const filteredData = useMemo(() => {
+    const safeLang = ['uz', 'ru', 'en'].includes(lang) ? lang : 'en';
     let filtered = data;
 
     // Search filter
     if (searchTerm) {
       filtered = filtered.filter(item =>
-        item.title[lang]?.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        item.description[lang]?.toLowerCase().includes(searchTerm.toLowerCase())
+        item?.title?.[safeLang]?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        item?.description?.[safeLang]?.toLowerCase().includes(searchTerm.toLowerCase())
       );
     }
 
     // Category filter
     if (selectedCategory !== 'all') {
       filtered = filtered.filter(item =>
-        item.category[lang]?.toLowerCase() === selectedCategory.toLowerCase()
+        item?.category?.[safeLang]?.toLowerCase() === selectedCategory.toLowerCase()
       );
     }
 
     // Price filter
     filtered = filtered.filter(item =>
-      item.price >= priceRange.min && item.price <= priceRange.max
+      item?.price >= priceRange.min && item?.price <= priceRange.max
     );
 
     // Sort
@@ -38,7 +39,7 @@ export const useSearch = (data, lang) => {
           return b.price - a.price;
         case 'name':
         default:
-          return a.title[lang]?.localeCompare(b.title[lang]) || 0;
+          return (a?.title?.[safeLang] || '').localeCompare(b?.title?.[safeLang] || '');
       }
     });
 

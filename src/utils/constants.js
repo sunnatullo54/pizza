@@ -1,4 +1,3 @@
-// Loyiha konstantalari
 export const STORAGE_KEYS = {
   CART: 'pizza_cart',
   FAVORITES: 'pizza_favorites',
